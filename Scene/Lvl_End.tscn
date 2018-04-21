@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Script/Main.gd" type="Script" id=1]
+[ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scene/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scene/Exit.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Art/Open 24 Display St.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Scene/Pique.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 64
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 5 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Main" type="Node"]
+
+script = ExtResource( 1 )
+nextLvlName = "Lvl_1"
+
+[node name="StartPosition" type="Position2D" parent="." index="0"]
+
+position = Vector2( 400, 224 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Timer" type="Timer" parent="." index="1"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="HUD" parent="." index="2" instance=ExtResource( 2 )]
+
+[node name="Fuels" type="Node" parent="." index="3"]
+
+[node name="Player" parent="." index="4" instance=ExtResource( 3 )]
+
+position = Vector2( 400, 224 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Exit" parent="." index="5" instance=ExtResource( 4 )]
+
+position = Vector2( 624, 224 )
+
+[node name="Label" type="Label" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 512.0
+margin_right = 1024.0
+margin_bottom = 588.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "YOU WIN!"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Label2" type="Label" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 688.0
+margin_right = 1024.0
+margin_bottom = 764.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "PRESS ESCAPE TO CLOSE THE GAME"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Pique" parent="." index="8" instance=ExtResource( 6 )]
+
+position = Vector2( 512, 224 )
+
+[connection signal="timeout" from="Timer" to="." method="onTimerTimeout"]
+
+[connection signal="hit" from="Player" to="." method="gameOver"]
+
+[connection signal="hitPortal" from="Player" to="." method="onPlayerHitPortal"]
+
+
