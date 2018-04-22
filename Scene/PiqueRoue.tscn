@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Script/PiqueRoue.gd" type="Script" id=1]
+[ext_resource path="res://Scene/PiqueKin.tscn" type="PackedScene" id=2]
+
+[node name="PiqueRoue" type="Node2D"]
+
+position = Vector2( 144, 112 )
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+speed = 0.5
+
+[node name="PiqueKin" parent="." index="0" instance=ExtResource( 2 )]
+
+[node name="PiqueKin2" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 0, 32 )
+
+[node name="PiqueKin3" parent="." index="2" instance=ExtResource( 2 )]
+
+position = Vector2( 0, -32 )
+
+[node name="PiqueKin4" parent="." index="3" instance=ExtResource( 2 )]
+
+position = Vector2( -32, 0 )
+
+[node name="PiqueKin5" parent="." index="4" instance=ExtResource( 2 )]
+
+position = Vector2( 32, 0 )
+
+[node name="PiqueKin6" parent="." index="5" instance=ExtResource( 2 )]
+
+position = Vector2( 0, 64 )
+
+[node name="PiqueKin13" parent="." index="6" instance=ExtResource( 2 )]
+
+position = Vector2( 0, 96 )
+
+[node name="PiqueKin17" parent="." index="7" instance=ExtResource( 2 )]
+
+position = Vector2( 0, 128 )
+
+[node name="PiqueKin7" parent="." index="8" instance=ExtResource( 2 )]
+
+position = Vector2( 0, -64 )
+
+[node name="PiqueKin11" parent="." index="9" instance=ExtResource( 2 )]
+
+position = Vector2( 0, -96 )
+
+[node name="PiqueKin15" parent="." index="10" instance=ExtResource( 2 )]
+
+position = Vector2( 0, -128 )
+
+[node name="PiqueKin8" parent="." index="11" instance=ExtResource( 2 )]
+
+position = Vector2( -64, 0 )
+
+[node name="PiqueKin10" parent="." index="12" instance=ExtResource( 2 )]
+
+position = Vector2( -96, 0 )
+
+[node name="PiqueKin14" parent="." index="13" instance=ExtResource( 2 )]
+
+position = Vector2( -128, 0 )
+
+[node name="PiqueKin9" parent="." index="14" instance=ExtResource( 2 )]
+
+position = Vector2( 64, 0 )
+
+[node name="PiqueKin12" parent="." index="15" instance=ExtResource( 2 )]
+
+position = Vector2( 96, 0 )
+
+[node name="PiqueKin16" parent="." index="16" instance=ExtResource( 2 )]
+
+position = Vector2( 128, 0 )
+
+

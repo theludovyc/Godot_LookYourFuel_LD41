@@ -8,11 +8,11 @@
 [node name="Main" type="Node"]
 
 script = ExtResource( 1 )
-nextLvlName = "Lvl_1"
+nextLvlName = "Lvl_End"
 
 [node name="StartPosition" type="Position2D" parent="." index="0"]
 
-position = Vector2( 400, 224 )
+position = Vector2( 560, 80 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Timer" type="Timer" parent="." index="1"]
@@ -24,19 +24,29 @@ autostart = false
 
 [node name="HUD" parent="." index="2" instance=ExtResource( 2 )]
 
-[node name="Player" parent="." index="3" instance=ExtResource( 3 )]
+[node name="Fuels" type="Node" parent="." index="3"]
 
-position = Vector2( 400, 224 )
+[node name="Player" parent="." index="4" instance=ExtResource( 3 )]
+
+position = Vector2( 368, 288 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Exit" parent="." index="4" instance=ExtResource( 4 )]
+[node name="Piques" type="Node" parent="." index="5"]
 
-position = Vector2( 608, 224 )
+[node name="Exit" parent="." index="6" instance=ExtResource( 4 )]
+
+position = Vector2( 648, 393 )
 
 [connection signal="timeout" from="Timer" to="." method="onTimerTimeout"]
 
 [connection signal="hit" from="Player" to="." method="gameOver"]
 
+[connection signal="hitFuel" from="Player" to="." method="onPlayerHitFuel"]
+
 [connection signal="hitPortal" from="Player" to="." method="onPlayerHitPortal"]
+
+[connection signal="noFuel" from="Player" to="." method="onPlayerNoFuel"]
+
+[connection signal="onMove" from="Player" to="HUD" method="onPlayerMove"]
 
 

@@ -76,9 +76,10 @@ func _process(delta):
 
 		if moveX or moveY:
 			fuel-=1
-			emit_signal("onMove", fuel)
 			if fuel <= 0:
+				fuel=0
 				emit_signal("noFuel")
+			emit_signal("onMove", fuel)
 
 	if moveX==false:
 		if move.x>0:

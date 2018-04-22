@@ -34,117 +34,151 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Piques" type="Node" parent="." index="5"]
 
-editor/display_folded = true
-
 [node name="Pique20" parent="Piques" index="0" instance=ExtResource( 4 )]
+
+position = Vector2( 560, 272 )
+
+[node name="Pique29" parent="Piques" index="1" instance=ExtResource( 4 )]
 
 position = Vector2( 560, 320 )
 
-[node name="Pique21" parent="Piques" index="1" instance=ExtResource( 4 )]
+[node name="Pique21" parent="Piques" index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 512, 320 )
+position = Vector2( 464, 368 )
 
-[node name="Pique2" parent="Piques" index="2" instance=ExtResource( 4 )]
+[node name="Pique2" parent="Piques" index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 416, 320 )
 
-[node name="Pique3" parent="Piques" index="3" instance=ExtResource( 4 )]
+[node name="Pique3" parent="Piques" index="4" instance=ExtResource( 4 )]
 
 position = Vector2( 464, 320 )
 
-[node name="Pique4" parent="Piques" index="4" instance=ExtResource( 4 )]
+[node name="Pique4" parent="Piques" index="5" instance=ExtResource( 4 )]
 
 position = Vector2( 464, 272 )
 
-[node name="Pique5" parent="Piques" index="5" instance=ExtResource( 4 )]
+[node name="Pique5" parent="Piques" index="6" instance=ExtResource( 4 )]
 
 position = Vector2( 464, 224 )
 
-[node name="Pique6" parent="Piques" index="6" instance=ExtResource( 4 )]
+[node name="Pique6" parent="Piques" index="7" instance=ExtResource( 4 )]
 
 position = Vector2( 464, 176 )
 
-[node name="Pique19" parent="Piques" index="7" instance=ExtResource( 4 )]
+[node name="Pique19" parent="Piques" index="8" instance=ExtResource( 4 )]
 
-position = Vector2( 608, 320 )
+position = Vector2( 656, 368 )
 
-[node name="Pique22" parent="Piques" index="8" instance=ExtResource( 4 )]
+[node name="Pique30" parent="Piques" index="9" instance=ExtResource( 4 )]
+
+position = Vector2( 560, 368 )
+
+[node name="Pique31" parent="Piques" index="10" instance=ExtResource( 4 )]
+
+position = Vector2( 464, 416 )
+
+[node name="Pique32" parent="Piques" index="11" instance=ExtResource( 4 )]
+
+position = Vector2( 464, 464 )
+
+[node name="Pique33" parent="Piques" index="12" instance=ExtResource( 4 )]
+
+position = Vector2( 512, 464 )
+
+[node name="Pique34" parent="Piques" index="13" instance=ExtResource( 4 )]
+
+position = Vector2( 560, 464 )
+
+[node name="Pique35" parent="Piques" index="14" instance=ExtResource( 4 )]
+
+position = Vector2( 608, 464 )
+
+[node name="Pique36" parent="Piques" index="15" instance=ExtResource( 4 )]
+
+position = Vector2( 656, 464 )
+
+[node name="Pique37" parent="Piques" index="16" instance=ExtResource( 4 )]
+
+position = Vector2( 656, 416 )
+
+[node name="Pique22" parent="Piques" index="17" instance=ExtResource( 4 )]
 
 position = Vector2( 656, 320 )
 
-[node name="Pique23" parent="Piques" index="9" instance=ExtResource( 4 )]
+[node name="Pique23" parent="Piques" index="18" instance=ExtResource( 4 )]
 
 position = Vector2( 656, 272 )
 
-[node name="Pique24" parent="Piques" index="10" instance=ExtResource( 4 )]
+[node name="Pique24" parent="Piques" index="19" instance=ExtResource( 4 )]
 
 position = Vector2( 656, 224 )
 
-[node name="Pique25" parent="Piques" index="11" instance=ExtResource( 4 )]
+[node name="Pique25" parent="Piques" index="20" instance=ExtResource( 4 )]
 
 position = Vector2( 656, 176 )
 
-[node name="Pique26" parent="Piques" index="12" instance=ExtResource( 4 )]
+[node name="Pique26" parent="Piques" index="21" instance=ExtResource( 4 )]
 
 position = Vector2( 656, 128 )
 
-[node name="Pique27" parent="Piques" index="13" instance=ExtResource( 4 )]
+[node name="Pique27" parent="Piques" index="22" instance=ExtResource( 4 )]
 
 position = Vector2( 656, 80 )
 
-[node name="Pique28" parent="Piques" index="14" instance=ExtResource( 4 )]
+[node name="Pique28" parent="Piques" index="23" instance=ExtResource( 4 )]
 
 position = Vector2( 608, 80 )
 
-[node name="Pique" parent="Piques" index="15" instance=ExtResource( 4 )]
+[node name="Pique" parent="Piques" index="24" instance=ExtResource( 4 )]
 
 position = Vector2( 368, 320 )
 
-[node name="Pique7" parent="Piques" index="16" instance=ExtResource( 4 )]
+[node name="Pique7" parent="Piques" index="25" instance=ExtResource( 4 )]
 
 position = Vector2( 368, 272 )
 
-[node name="Pique8" parent="Piques" index="17" instance=ExtResource( 4 )]
+[node name="Pique8" parent="Piques" index="26" instance=ExtResource( 4 )]
 
 position = Vector2( 368, 224 )
 
-[node name="Pique9" parent="Piques" index="18" instance=ExtResource( 4 )]
+[node name="Pique9" parent="Piques" index="27" instance=ExtResource( 4 )]
 
 position = Vector2( 368, 176 )
 
-[node name="Pique10" parent="Piques" index="19" instance=ExtResource( 4 )]
+[node name="Pique10" parent="Piques" index="28" instance=ExtResource( 4 )]
 
 position = Vector2( 368, 128 )
 
-[node name="Pique11" parent="Piques" index="20" instance=ExtResource( 4 )]
+[node name="Pique11" parent="Piques" index="29" instance=ExtResource( 4 )]
 
 position = Vector2( 368, 80 )
 
-[node name="Pique12" parent="Piques" index="21" instance=ExtResource( 4 )]
+[node name="Pique12" parent="Piques" index="30" instance=ExtResource( 4 )]
 
 position = Vector2( 416, 80 )
 
-[node name="Pique13" parent="Piques" index="22" instance=ExtResource( 4 )]
+[node name="Pique13" parent="Piques" index="31" instance=ExtResource( 4 )]
 
 position = Vector2( 464, 80 )
 
-[node name="Pique14" parent="Piques" index="23" instance=ExtResource( 4 )]
+[node name="Pique14" parent="Piques" index="32" instance=ExtResource( 4 )]
 
 position = Vector2( 512, 80 )
 
-[node name="Pique15" parent="Piques" index="24" instance=ExtResource( 4 )]
+[node name="Pique15" parent="Piques" index="33" instance=ExtResource( 4 )]
 
 position = Vector2( 560, 80 )
 
-[node name="Pique16" parent="Piques" index="25" instance=ExtResource( 4 )]
+[node name="Pique16" parent="Piques" index="34" instance=ExtResource( 4 )]
 
 position = Vector2( 560, 128 )
 
-[node name="Pique17" parent="Piques" index="26" instance=ExtResource( 4 )]
+[node name="Pique17" parent="Piques" index="35" instance=ExtResource( 4 )]
 
 position = Vector2( 560, 176 )
 
-[node name="Pique18" parent="Piques" index="27" instance=ExtResource( 4 )]
+[node name="Pique18" parent="Piques" index="36" instance=ExtResource( 4 )]
 
 position = Vector2( 560, 224 )
 

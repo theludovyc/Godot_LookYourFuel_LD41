@@ -10,7 +10,7 @@ config_version=3
 
 [application]
 
-config/name="LudumDare042018"
+config/name="LookYourFuel"
 run/main_scene="res://Scene/Lvl_1.tscn"
 config/icon="res://icon.png"
 
