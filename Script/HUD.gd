@@ -5,19 +5,16 @@ extends Control
 # var b = "textvar"
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	$MessageLabel.hide()
 	pass
 
-func showMessage(text):
+func setMessage(text):
 	$MessageLabel.text=text
-	$MessageLabel.show()
-	pass
 
-func hideMessage():
+func showMessage(var b:bool):
+	if b:
+		$MessageLabel.show()
+		return
 	$MessageLabel.hide()
-	pass
 
 func onPlayerMove(a):
 	$FuelBar.scale.x = 0.16*a

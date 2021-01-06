@@ -1,3 +1,5 @@
+class_name Player
+
 extends Area2D
 
 # class member variables go here, for example:
@@ -12,23 +14,19 @@ signal onMove(a)
 
 signal noFuel
 
-var moveSpeed=10.0
-var maxSpeed=200.0
-var stopSpeed=0.5
+const moveSpeed=0.1
+const maxSpeed=200.0
+const stopSpeed=0.01
 
-var move
+var move:Vector2
 
 var screenSize
 
 var canMove=false
-var moveX=false
-var moveY=false
 
 var fuel=200
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
 	move=Vector2()
 
 	screenSize=get_viewport_rect().size
@@ -36,92 +34,42 @@ func _ready():
 	hide()
 	pass
 
+func consumeFuel():
+	fuel-=1
+			
+	emit_signal("onMove", fuel)
+	
+	if fuel <= 0:
+		fuel=0
+		emit_signal("noFuel")
+
 func _process(delta):
-	# Called every frame. Delta is time since last frame.
-	# Update game logic here.
 	if canMove==true && fuel>0:
-		if Input.is_action_pressed("ui_left"):
-			move.x-=moveSpeed
-			if move.x<-maxSpeed:
-				move.x=-maxSpeed
-			moveX=true
-			fuel-=1
-			emit_signal("onMove", fuel)
-		elif Input.is_action_pressed("ui_right"):
-			move.x+=moveSpeed
-			if move.x>maxSpeed:
-				move.x=maxSpeed
-			moveX=true
-			fuel-=1
-			emit_signal("onMove", fuel)
+		var dirX = int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"))
+		var dirY = int(Input.is_action_pressed("ui_down"))-int(Input.is_action_pressed("ui_up"))
+		
+		if dirX != 0:
+			consumeFuel()
+			
+			move.x = lerp(move.x, dirX * maxSpeed, moveSpeed)
 		else:
-			moveX=false
-
-		if Input.is_action_pressed("ui_up"):
-			move.y-=moveSpeed
-			if move.y<-maxSpeed:
-				move.y=-maxSpeed
-			moveY=true
-			fuel-=1
-			emit_signal("onMove", fuel)
-		elif Input.is_action_pressed("ui_down"):
-			move.y+=moveSpeed
-			if move.y>maxSpeed:
-				move.y=maxSpeed
-			moveY=true
-			fuel-=1
-			emit_signal("onMove", fuel)
+			move.x = lerp(move.x, 0, stopSpeed)
+			
+		if dirY != 0:
+			consumeFuel()
+			
+			move.y = lerp(move.y, dirY * maxSpeed, moveSpeed)
 		else:
-			moveY=false
+			move.y = lerp(move.y, 0, stopSpeed)
 
-		if moveX or moveY:
-			fuel-=1
-			if fuel <= 0:
-				fuel=0
-				emit_signal("noFuel")
-			emit_signal("onMove", fuel)
-
-	if moveX==false:
-		if move.x>0:
-			move.x-=stopSpeed
-			if move.x<0:
-				move.x=0
-		elif move.x<0:
-			move.x+=stopSpeed
-			if move.x>0:
-				move.x=0
-
-	if moveY==false:
-		if move.y>0:
-			move.y-=stopSpeed
-			if move.y<0:
-				move.y=0
-		elif move.y<0:
-			move.y+=stopSpeed
-			if move.y>0:
-				move.y=0
-
-	position+=move*delta
-	position.x = clamp(position.x, 0, screenSize.x)
-	position.y = clamp(position.y, 0, screenSize.y)
-	pass
-
-func setCanMove():
-	canMove=true
-	move.x=0
-	move.y=0
-	pass
-
-func setCantMove():
-	canMove=false
-	moveX=false
-	moveY=false
+		position+=move*delta
+		position.x = clamp(position.x, 0, screenSize.x)
+		position.y = clamp(position.y, 0, screenSize.y)
 	pass
 
 func start(pos):
 	position=pos
-	move.x=0
-	move.y=0
+	move = Vector2()
 	fuel=200
 	emit_signal("onMove", fuel)
 

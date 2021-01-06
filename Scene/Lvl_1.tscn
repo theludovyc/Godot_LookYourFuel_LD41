@@ -1,36 +1,22 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Script/Main.gd" type="Script" id=1]
-[ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scene/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scene/Pique.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scene/Exit.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Art/Open 24 Display St.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://default_env.tres" type="Environment" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 6 )
 
 [node name="Main" type="Node"]
-script = ExtResource( 1 )
-nextLvlName = "Lvl_2"
 
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 416, 208 )
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [node name="Fuels" type="Node" parent="."]
 
 [node name="Exit" parent="." instance=ExtResource( 5 )]
 position = Vector2( 608, 208 )
-
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 320, 384 )
 
 [node name="Piques" type="Node" parent="."]
 
@@ -94,6 +80,9 @@ custom_fonts/font = SubResource( 1 )
 text = "USE ARROW KEYS TO MOVE"
 align = 2
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label2" type="Label" parent="."]
 modulate = Color( 1, 0.490196, 0, 1 )
@@ -133,11 +122,6 @@ custom_fonts/font = SubResource( 1 )
 text = "PRESS ESCAPE TO CLOSE THE GAME"
 align = 1
 autowrap = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 7 )
-[connection signal="timeout" from="Timer" to="." method="onTimerTimeout"]
-[connection signal="hit" from="Player" to="." method="gameOver"]
-[connection signal="hitPortal" from="Player" to="." method="onPlayerHitPortal"]
-[connection signal="noFuel" from="Player" to="." method="onPlayerNoFuel"]
-[connection signal="onMove" from="Player" to="HUD" method="onPlayerMove"]
+__meta__ = {
+"_edit_use_anchors_": false
+}

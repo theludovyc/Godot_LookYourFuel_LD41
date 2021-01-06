@@ -8,10 +8,23 @@ export (String) var nextLvlName
 
 var isStart=false
 
+var Level
+
+var level_index = 1
+
+var level
+
+var player:Player
+
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	$HUD.showMessage("PRESS SPACE KEY TO START!")
+	var Level = load("res://Scene/Lvl_"+str(level_index)+".tscn")
+	
+	level = Level.instance()
+	
+	add_child(level)
+	
+	player = $Player
+	
 	pass
 
 func newGame():
@@ -29,7 +42,13 @@ func newGame():
 
 func _process(delta):
 	if isStart==false && Input.is_key_pressed(KEY_SPACE):
-		newGame()
+		player.start($Main/StartPosition.position)
+		player.show()
+		
+		player.canMove = true
+		
+		$HUD.showMessage(false)
+		
 		isStart=true
 
 	if(Input.is_key_pressed(KEY_ESCAPE)):
@@ -37,14 +56,11 @@ func _process(delta):
 	pass
 
 func gameOver():
-	$Player.setCantMove()
+	$Player.canMove = false
 
-	$HUD.showMessage("YOU LOST!")
+	$HUD.showMessage(true)
 
 	isStart=false
-
-	$Timer.start()
-	pass
 
 func onTimerTimeout():
 	if !isStart:
