@@ -1,27 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Script/Main.gd" type="Script" id=1]
-[ext_resource path="res://Scene/HUD.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scene/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scene/Pique.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scene/Exit.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node"]
-script = ExtResource( 1 )
-nextLvlName = "Lvl_3"
 
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 416, 144 )
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[node name="HUD" parent="." instance=ExtResource( 2 )]
-
 [node name="Fuels" type="Node" parent="."]
-
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 224, 208 )
 
 [node name="Piques" type="Node" parent="."]
 
@@ -138,8 +125,3 @@ position = Vector2( 416, 480 )
 
 [node name="Exit" parent="." instance=ExtResource( 5 )]
 position = Vector2( 616, 120 )
-[connection signal="timeout" from="Timer" to="." method="onTimerTimeout"]
-[connection signal="hit" from="Player" to="." method="gameOver"]
-[connection signal="hitPortal" from="Player" to="." method="onPlayerHitPortal"]
-[connection signal="noFuel" from="Player" to="." method="onPlayerNoFuel"]
-[connection signal="onMove" from="Player" to="HUD" method="onPlayerMove"]

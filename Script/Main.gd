@@ -8,20 +8,21 @@ export (String) var nextLvlName
 
 var isStart=false
 
-var Level
-
 var level_index = 1
 
 var level
 
 var player:Player
 
-func _ready():
+func loadLevel():
 	var Level = load("res://Scene/Lvl_"+str(level_index)+".tscn")
 	
 	level = Level.instance()
 	
 	add_child(level)
+
+func _ready():
+	loadLevel()
 	
 	player = $Player
 	
@@ -40,10 +41,14 @@ func newGame():
 	$HUD.hideMessage()
 	pass
 
-func _process(delta):
-	if isStart==false && Input.is_key_pressed(KEY_SPACE):
-		player.start($Main/StartPosition.position)
+func _process(_delta):
+	if Input.is_key_pressed(KEY_SPACE):
+		player.start(level.get_node("StartPosition").position)
 		player.show()
+		
+		for body in level.get_node("Fuels").get_children():
+			body.get_node("CollisionShape2D").disabled=false
+			body.show()
 		
 		player.canMove = true
 		
@@ -56,35 +61,29 @@ func _process(delta):
 	pass
 
 func gameOver():
-	$Player.canMove = false
-
 	$HUD.showMessage(true)
 
-	isStart=false
-
 func onTimerTimeout():
-	if !isStart:
-		$HUD.showMessage("PRESS SPACE KEY TO START!")
 	pass
+
+func nextLevel():
+	level.queue_free()
+	
+	level_index += 1
+	
+	if level_index > 10:
+		level_index = 1
+	
+	loadLevel()
 
 func onPlayerHitPortal():
-	get_tree().change_scene("res://Scene/"+nextLvlName+".tscn")
-	pass
+	$Player.hide()
+	$Player.position = Vector2()
+	
+	call_deferred("nextLevel")
 
 func onPlayerNoFuel():
-	$Player.setCantMove()
-
-	$HUD.showMessage("NO FUEL!")
-
-	isStart=false
-
-	$Timer.start()
-	pass
+	$HUD.showMessage(true)
 
 func onPlayerHitFuel():
-	$Player.canMove=true
-
-	$HUD.hideMessage()
-
-	isStart=true
 	pass

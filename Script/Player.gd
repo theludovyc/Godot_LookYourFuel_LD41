@@ -14,7 +14,7 @@ signal onMove(a)
 
 signal noFuel
 
-const moveSpeed=0.1
+const moveSpeed=0.07
 const maxSpeed=200.0
 const stopSpeed=0.01
 
@@ -76,6 +76,9 @@ func start(pos):
 	$CollisionShape2D.disabled=false
 	pass
 
+func disableColShape():
+	$CollisionShape2D.disabled=true
+
 func onPlayerBodyEntered(body):
 	if body.name[0] == 'F':
 		fuel=200
@@ -85,8 +88,10 @@ func onPlayerBodyEntered(body):
 		emit_signal("hitFuel")
 	elif body.name[0] == 'E':
 		emit_signal("hitPortal")
-		$CollisionShape2D.disabled=true
+		canMove = false
+		call_deferred("disableColShape")
 	else:
 		emit_signal("hit")
-		$CollisionShape2D.disabled=true
+		canMove = false
+		call_deferred("disableColShape")
 	pass # replace with function body
