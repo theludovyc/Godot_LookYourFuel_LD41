@@ -29,20 +29,21 @@ func _ready():
 	pass
 
 func newGame():
-	$Player.start($StartPosition.position)
-	$Player.show()
+	player.start($StartPosition.position)
+	player.show()
 
 	for body in $Fuels.get_children():
 		body.get_node("CollisionShape2D").disabled=false
 		body.show()
 
-	$Player.setCanMove()
+	player.setCanMove()
 
 	$HUD.hideMessage()
 	pass
 
 func _process(_delta):
 	if Input.is_key_pressed(KEY_SPACE):
+		player.reset()
 		player.start(level.get_node("StartPosition").position)
 		player.show()
 		
@@ -77,8 +78,8 @@ func nextLevel():
 	loadLevel()
 
 func onPlayerHitPortal():
-	$Player.hide()
-	$Player.position = Vector2()
+	player.hide()
+	player.position = Vector2()
 	
 	call_deferred("nextLevel")
 

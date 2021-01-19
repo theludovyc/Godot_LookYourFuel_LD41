@@ -75,20 +75,27 @@ func _process(delta):
 
 func start(pos):
 	position=pos
+	
 	speed = Vector2()
+	
+	$Particles2D.amount = 8
+	
 	fuel=200
+	
 	emit_signal("onMove", fuel)
 
-	$CollisionShape2D.disabled=false
+	call_deferred("disableColShape", false)
 	pass
 
-func disableColShape():
-	$CollisionShape2D.disabled=true
+func disableColShape(b:bool):
+	$CollisionShape2D.disabled=b
 
 func reset():
 	canMove = false
 	
-	call_deferred("disableColShape")
+	$Particles2D.amount = 1
+	
+	call_deferred("disableColShape", true)
 
 func onPlayerBodyEntered(body):
 	if body.name[0] == 'F':
