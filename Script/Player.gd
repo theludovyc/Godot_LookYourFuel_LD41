@@ -14,11 +14,11 @@ signal onMove(a)
 
 signal noFuel
 
-const moveSpeed=0.07
-const maxSpeed=200.0
-const stopSpeed=0.01
+const moveSpeed=0.1
+const maxSpeed= moveSpeed*1000.0
+const stopSpeed= moveSpeed*0.03
 
-var move:Vector2
+var speed:Vector2
 
 var screenSize
 
@@ -27,7 +27,7 @@ var canMove=false
 var fuel=200
 
 func _ready():
-	move=Vector2()
+	speed=Vector2()
 
 	screenSize=get_viewport_rect().size
 
@@ -43,33 +43,39 @@ func consumeFuel():
 		fuel=0
 		emit_signal("noFuel")
 
+func getAxis(inputA, inputB):
+	return int(Input.is_action_pressed(inputA))-int(Input.is_action_pressed(inputB))
+
+func getSpeed(dir:float, speed:float) -> float:
+	if dir != 0:
+		consumeFuel()
+		
+		return clamp(speed+dir*moveSpeed, -1, 1)
+	return sign(speed)*clamp(abs(speed)-stopSpeed, 0, 1)
+
 func _process(delta):
 	if canMove==true && fuel>0:
-		var dirX = int(Input.is_action_pressed("ui_right"))-int(Input.is_action_pressed("ui_left"))
-		var dirY = int(Input.is_action_pressed("ui_down"))-int(Input.is_action_pressed("ui_up"))
+		var dir:Vector2
+		dir.x = getAxis("ui_right", "ui_left")
+		dir.y = getAxis("ui_down", "ui_up")
 		
-		if dirX != 0:
-			consumeFuel()
+		dir = dir.normalized()
+		
+		speed.x = getSpeed(dir.x, speed.x)
 			
-			move.x = lerp(move.x, dirX * maxSpeed, moveSpeed)
-		else:
-			move.x = lerp(move.x, 0, stopSpeed)
-			
-		if dirY != 0:
-			consumeFuel()
-			
-			move.y = lerp(move.y, dirY * maxSpeed, moveSpeed)
-		else:
-			move.y = lerp(move.y, 0, stopSpeed)
+		speed.y = getSpeed(dir.y, speed.y)
+		
+		if speed.length() > 1:
+			speed = speed.normalized()
 
-		position+=move*delta
+		position += speed*maxSpeed*delta
 		position.x = clamp(position.x, 0, screenSize.x)
 		position.y = clamp(position.y, 0, screenSize.y)
 	pass
 
 func start(pos):
 	position=pos
-	move = Vector2()
+	speed = Vector2()
 	fuel=200
 	emit_signal("onMove", fuel)
 
@@ -78,6 +84,11 @@ func start(pos):
 
 func disableColShape():
 	$CollisionShape2D.disabled=true
+
+func reset():
+	canMove = false
+	
+	call_deferred("disableColShape")
 
 func onPlayerBodyEntered(body):
 	if body.name[0] == 'F':
@@ -88,10 +99,8 @@ func onPlayerBodyEntered(body):
 		emit_signal("hitFuel")
 	elif body.name[0] == 'E':
 		emit_signal("hitPortal")
-		canMove = false
-		call_deferred("disableColShape")
+		reset()
 	else:
 		emit_signal("hit")
-		canMove = false
-		call_deferred("disableColShape")
+		reset()
 	pass # replace with function body
